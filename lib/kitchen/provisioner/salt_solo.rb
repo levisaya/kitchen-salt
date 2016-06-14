@@ -100,16 +100,11 @@ module Kitchen
             else{
               Write-Host "Chocolatey will be installed."
               iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
-            }
-              
-            # Check if Salt Minion is installed
-            if (Test-Path C:/Salt){
-              choco list saltminion    
-            }
-            else{
-              choco install saltminion -r -y
-            }
-                          
+            } 
+
+            choco install saltminion -r -y
+
+
             if (Test-Path C:/opscode/chef){
               choco list chef-client   
             }
@@ -119,6 +114,7 @@ module Kitchen
             else{
               Write-Host "Skipping install of chef-client because 'require_chef_omnibus' is set to #{chef_omnibus}."
             }
+
           POWERSHELL
         else
           <<-INSTALL
