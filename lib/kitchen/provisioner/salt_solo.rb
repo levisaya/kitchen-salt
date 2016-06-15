@@ -102,8 +102,11 @@ module Kitchen
               iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))
             } 
 
+            Start-Sleep -s 60
+            
             choco install saltminion -r -y
 
+            Start-Sleep -s 60
 
             if (Test-Path C:/opscode/chef){
               choco list chef-client   
